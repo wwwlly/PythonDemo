@@ -3,8 +3,8 @@ import os
 import sys
 
 encode_path = os.path.abspath("D:\libwebp-1.1.0-windows-x64\bin\cwebp.exe")
-webp_path = os.path.abspath("G:\GitRepository\PythonDemo\webp") # webp图片路径
-png_path = os.path.abspath("G:\GitRepository\PythonDemo\png") # png图片路径
+webp_path = os.path.abspath("G:\userPhotoWebp") # webp图片路径
+png_path = os.path.abspath("G:\userPhoto") # png图片路径
   
 def encode():
   "批量png转webp"
@@ -21,4 +21,14 @@ def encode():
     #print cmd
     os.system(cmd)
   return
-encode()
+#encode()
+
+def rename(path):
+  "批量改文件名"
+  for f in os.listdir(path):
+    if os.path.isfile(os.path.join(path, f)) == True:
+	  new_name = str(f).replace("@2x", "")
+	  print new_name
+	  os.rename(os.path.join(path, f), os.path.join(path, new_name))
+  return
+rename(webp_path)
